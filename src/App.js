@@ -3,15 +3,11 @@ import { useState } from 'react';
 import Title from './components/Title';
 import Modal from './components/Modal';
 import ActivityList from './components/ActivityList';
+import NewActivityForm from './components/NewActivityForm';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
-  const [activities, setActivities] = useState([
-    { title: 'Activity 1', id: 1 },
-    { title: 'Activity 2', id: 2 },
-    { title: 'Activity 3', id: 3 },
-    { title: 'Activity 4', id: 4 },
-  ]);
+  const [activities, setActivities] = useState([]);
 
   const handleDeleteActivity = (id) => {
     setActivities(activities.filter((activity) => activity.id !== id));
@@ -21,6 +17,13 @@ function App() {
     setShowModal((prev) => !prev);
   };
 
+  const updateActivities = (activity) => {
+    activity.id = activities.length + 1;
+    setActivities([...activities, activity]);
+
+    handleModal();
+  };
+
   return (
     <div className='app'>
       <Title
@@ -28,7 +31,7 @@ function App() {
         subtitle='Featured activities and happenings'
         borderThickness={'16px'}
       />
-      <button onClick={handleModal}>Show Modal</button>
+      <button onClick={handleModal}>Add New Event</button>
 
       <>
         <ActivityList
@@ -39,8 +42,7 @@ function App() {
 
       {showModal && (
         <Modal handleModalClick={handleModal}>
-          <h2>Use the Coupon</h2>
-          <p>Learn more when you checkout.</p>
+          <NewActivityForm updateActivities={updateActivities} />
         </Modal>
       )}
     </div>
