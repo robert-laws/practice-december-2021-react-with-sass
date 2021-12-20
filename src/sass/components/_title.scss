@@ -1,0 +1,17 @@
+@use '../abstracts' as v;
+
+.app-title {
+  width: 33%;
+  margin: 0 auto;
+}
+
+.title {
+  text-align: center;
+  color: v.$primary-color;
+  padding: 40px 80px;
+  background-color: v.$secondary-color;
+}
+
+.subtitle {
+  text-align: center;
+}
