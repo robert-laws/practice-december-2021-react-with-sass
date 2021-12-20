@@ -26,6 +26,7 @@ function App() {
       <Title
         title='Project Activities'
         subtitle='Featured activities and happenings'
+        borderThickness={'16px'}
       />
       <button onClick={handleModal}>Show Modal</button>
 
